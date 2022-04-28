@@ -1,18 +1,34 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <CollectionList :collections="collections" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+  import axios from 'axios';
+  import CollectionList from '../components/Home/CollectionList'
 export default {
+
   name: 'Home',
-  components: {
-    HelloWorld
+  components:{
+    CollectionList
+  },
+  data(){
+    return{
+      collections : [],
+    }
+  },
+
+  created: function() {
+     axios('https://api.scryfall.com/sets').then(res => {
+        res.data.data.forEach(datas => {
+          if(datas.card_count > 0){
+            this.collections.push(datas)
+          }
+        });
+      }).catch(e => console.error(e))
+  },
+  mounted(){
   }
 }
 </script>
