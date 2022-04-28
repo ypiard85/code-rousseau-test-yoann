@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mt-5">
     <CollectionList :collections="collections" />
   </div>
 </template>
@@ -19,8 +19,8 @@ export default {
     }
   },
 
-  created: function() {
-     axios('https://api.scryfall.com/sets').then(res => {
+  created(){
+     axios('https://api.scryfall.com/sets/').then(res => {
         res.data.data.forEach(datas => {
           if(datas.card_count > 0){
             this.collections.push(datas)
@@ -29,6 +29,7 @@ export default {
       }).catch(e => console.error(e))
   },
   mounted(){
+    console.log(this.collections)
   }
 }
 </script>

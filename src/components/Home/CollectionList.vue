@@ -16,18 +16,17 @@
               <td> {{ collection.released_at }} </td>
               <td><router-link :to="'/collection/' + collection.code " class="btn btn-sm btn-primary"> Voir la col</router-link></td>
             </tr>
-      </tbody>
-      <div class="spinner-border text-primary" role="status" v-else>
-        <span class="visually-hidden">Loading...</span>
-      </div>
+        </tbody>
+      <Loading v-else />
 </table>
 </div>
 </template>
 
 <script>
+  import Loading from '../../components/Loading'
   export default{
     name: 'collection-list',
-
+    components:{Loading},
     props:{
       collections : Array
     },
