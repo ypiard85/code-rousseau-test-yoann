@@ -11,6 +11,9 @@
             <li class="nav-item">
               <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
             </li>
+            <li class="nav-item">
+              <router-link class="nav-link active" aria-current="page" to="/ajout-d-un-jeu">Jeux unique <small class="badge bg-primary text-wrap">{{ this.$store.state.cards.length }} cartes</small></router-link>
+            </li>
           </ul>
         </div>
       </div>
@@ -18,39 +21,11 @@
     <div class="pt-5">
       <router-view/>
     </div>
-    <button type="button" class="btn btn-primary fixed-bottom" style="width: 50px" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        {{  this.$store.state.jeux.length }}
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Cartes en main</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            LISTE DES CARTES
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changs</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
   export default{
-
-    data(){
-      return{
-
-      }
-    },
 
   }
 

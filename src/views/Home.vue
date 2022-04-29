@@ -28,8 +28,6 @@ export default {
         });
       }).catch(e => console.error(e))
   },
-  mounted(){
-    console.log(this.collections)
-  }
+
 }
 </script>
