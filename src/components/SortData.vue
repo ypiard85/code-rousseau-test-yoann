@@ -1,3 +1,4 @@
+<!-- Template afin de filtrer les cartes -->
 <template>
     <div class="mb-5 d-flex justify-content-center">
         <button class="btn btn-primary" @click="filterByName">
@@ -34,6 +35,7 @@
             }
        },
 
+       //méthodes pour trier les cartes
        methods:{
             filterByName(){
                 this.filterName = !this.filterName

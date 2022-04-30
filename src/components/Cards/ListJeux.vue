@@ -12,7 +12,7 @@
                     <div class="row">
                     <div class="col-6 col-md-3 mb-5" v-for="(card, index) in jeu.cards" :key="index">
                         <img class="mb-3" style="max-width: 100%" :src="card.image_uris.normal"  alt="">
-                        <button @click="deleteImage(index)" class="btn btn-danger">X</button>
+                        <button @click="deleteCarte(index)" class="btn btn-danger">X</button>
                     </div>
                 </div>
             </div>
@@ -30,11 +30,15 @@
 
         data(){
             return{
+
+                //Récupération de tous les mois de l'année
                 month: ['Janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout', 'septembre', 'novembre', 'décembre']
             }
         },
 
         computed:{
+
+            //Création d'une date personnalisé ex : 01 janvier 2022
             getRealDate(){
                 var d = this.jeu.date
                 return  d.getDate() + ' ' + this.month[d.getMonth()] + ' ' + d.getFullYear();
@@ -42,7 +46,8 @@
         },
 
         methods:{
-            deleteImage(card){
+            //Appel de la méthode dans vuex pour supprimer une carte
+            deleteCarte(card){
                 this.$store.dispatch('deleteCarte', card)
             }
         }

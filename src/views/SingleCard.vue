@@ -16,10 +16,11 @@ import OneCard from '@/components/Cards/OneCard'
             }
         },
 
+        //Affichage de l'uri de l'api pour afficher le détail d'une carte
         created(){
             axios(`https://api.scryfall.com/cards/${this.id}`).then(res => {
                 this.card = res.data
-            })
+            }).catch(e => console.log(e))
         },
 
     }

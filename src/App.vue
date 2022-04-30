@@ -46,6 +46,7 @@
       }
     },
 
+    //initialise le thème du site dès l'ouverture du site
     mounted(){
       !localStorage.getItem('theme') && localStorage.setItem('theme', 'light')
       document.querySelector('html').classList = localStorage.getItem('theme')
@@ -61,6 +62,7 @@
       ...mapState(['cards','jeu']),
     },
 
+    //Gérer le thème du site | Dark ou Light
     methods:{
       handleTheme(){
         this.isCheck = !this.isCheck

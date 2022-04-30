@@ -24,9 +24,12 @@
 
 <script>
   import Loading from '../../components/Loading'
+
   export default{
+
     name: 'collection-list',
     components:{Loading},
+
     props:{
       collections : Array
     },

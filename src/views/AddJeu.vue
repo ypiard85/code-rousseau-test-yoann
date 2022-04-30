@@ -46,6 +46,8 @@ import { mapState } from 'vuex'
         },
 
         computed:{
+
+            //Récupère les states de vuex
             ...mapState(['cards', 'jeu']),
 
             hasDisabled(){

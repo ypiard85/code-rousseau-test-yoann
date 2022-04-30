@@ -29,11 +29,9 @@
 
         data(){
           return{
-            in_array: false
+
           }
         },
-
-
 
         computed:{
           shourtDescription(){

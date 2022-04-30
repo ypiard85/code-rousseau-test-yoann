@@ -17,6 +17,7 @@ export default {
     }
   },
 
+  //Récupère tous les collections de cartes
   created(){
      axios('https://api.scryfall.com/sets/').then(res => {
         res.data.data.forEach(datas => {
