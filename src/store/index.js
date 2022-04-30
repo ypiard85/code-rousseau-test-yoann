@@ -6,42 +6,68 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     cards: [],
-    jeux:[],
+    jeu: {},
   },
   mutations: {
     ADD_TO_CARD(state, payload){
-      state.cards.push(payload)
+      if(!state.jeu.name){
+        if(state.cards.length !== 7){
+          state.cards.push(payload)
+        }else{
+          alert('Désoler votre main est complette')
+        }
+      }else{
+        if(state.jeu.cards.length !== 7){
+          state.jeu.cards.push(payload)
+        }else{
+          alert('Désoler votre main est complette')
+        }
+      }
     },
 
     ADD_JEU(state, payload){
-      state.jeux.push({
-        name: payload.name,
-        date: payload.date,
-        cards: payload.cards
-      })
+        state.jeu  = {
+          name: payload.name,
+          date: payload.date,
+          cards: payload.cards
+        }
     },
 
     DELETE_CARTE(state, payload){
-       var t = state.cards.filter(item => item.id !== payload)
-       state.cards = t
+      var t = state.cards.filter((item, i) => i!== payload)
+      state.cards = t
+    },
+
+    DELETE_CARTE_IN_MAIN(state, payload){
+       var t = state.jeu.cards.filter((item,i) => i !== payload)
+       state.jeu.cards = t
+    },
+
+    DELETE_JEU(state){
+      state.jeu = {}
     }
+
   },
 
   actions: {
-    add_to_card({state,commit}, card){
-      if(state.cards.length !== 7){
+    add_to_card({commit}, card){
         commit('ADD_TO_CARD', card)
-      }else{
-        alert('Désoler votre main est complet')
-      }
     },
 
     add_jeu({commit}, jeu){
       commit('ADD_JEU', jeu)
     },
 
-    deleteCarte({commit}, card){
-      commit('DELETE_CARTE', card)
+    deleteCarte({state,commit}, card){
+      if(state.jeu.name){
+        commit('DELETE_CARTE_IN_MAIN', card)
+      }else{
+        commit('DELETE_CARTE', card)
+      }
+    },
+
+    delete_jeu({commit}){
+      commit('DELETE_JEU')
     }
-  },
+  }
 })

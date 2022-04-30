@@ -12,7 +12,10 @@
               <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link active" aria-current="page" to="/ajout-d-un-jeu">Jeux unique <small class="badge bg-primary text-wrap">{{ this.$store.state.cards.length }} cartes</small></router-link>
+              <router-link class="nav-link active" aria-current="page" to="/ajout-d-un-jeu">Jeux unique
+                <small class="badge bg-success text-wrap" v-if="this.jeu.name" > 1 jeu de {{ this.jeu.cards.length }} carte<span v-if="this.jeu.cards.length > 1">s</span> </small>
+                <small class="badge bg-primary text-wrap" v-else >{{ this.cards.length }} cartes</small>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -25,7 +28,11 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
+
   export default{
+
+    computed: mapState(['cards','jeu'])
 
   }
 

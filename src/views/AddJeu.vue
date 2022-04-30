@@ -1,6 +1,6 @@
 <template>
     <div class="mt-5 container">
-        <div class="row">
+        <div class="row" v-if="!this.jeu.name">
             <div class="col-md-6">
                 <h2>Ajouter un jeu</h2>
                 <form action="" @submit.prevent="handleSubmit" class="mt-5">
@@ -8,19 +8,15 @@
                         <input type="text" class="form-control" id="floatingInput" v-model="name" placeholder="Nom du jeu">
                         <label for="name">Nom de jeu</label>
                       </div>
-                    <div class="form-floating mb-3">
-                        <input type="date" class="form-control" v-model="date" id="floatingInput" placeholder="Nom du jeu">
-                        <label for="date">Date</label>
-                    </div>
                     <button type="submit" class="btn btn-primary">Je crée mon jeu</button>
                 </form>
             </div>
             <div class="col-md-6">
                 <h2>Liste des cartes</h2>
                 <div class="row">
-                    <div class="col-6 col-md-4 mt-5" v-for="card in this.cards" :key="card.id">
+                    <div class="col-6 col-md-4 mt-5" v-for="(card, index) in this.cards" :key="card.id">
                         <img :src="card.image_uris.normal" style="max-width: 100%" alt="">
-                        <button @click="deleteImage(card.id)" class="btn btn-danger">X</button>
+                        <button @click="deleteImage(index)" class="btn btn-danger">X</button>
                     </div>
                 </div>
             </div>
@@ -30,41 +26,45 @@
                  {{ message }}
                 </div>
               </div>
-        </div>
+            </div>
+            <div class="accordion mt-5" id="accordionExample" v-else>
+                <ListJeux :jeu="jeu" />
+            </div>
     </div>
 </template>
 
 
 <script>
-    import { mapState } from 'vuex'
+import ListJeux from '@/components/Cards/ListJeux';
+import { mapState } from 'vuex'
 
     export default{
-
+        components:{ListJeux},
         data(){
             return{
                 name: "",
-                date: "",
                 message: "",
             }
         },
 
-        computed: mapState(['cards']),
+        computed:{
+            ...mapState(['cards', 'jeu']),
+        },
 
         methods:{
             handleSubmit(){
-                if(this.name != "" && this.date != ""){
+                if(this.name != ""){
                     if(this.cards.length > 0){
                         if(this.cards.length <= 7){
                             setTimeout(() => {
                                 this.$store.dispatch('add_jeu', {
                                     name: this.name,
-                                    date: this.date,
+                                    date: new Date(),
                                     cards: this.cards
                                 })
                                 this.$store.state.cards = [],
                                 this.cards = []
                                 this.name = ''
-                                this.date = ""
                                 this.message = "Votre jeu a été créer"
                             }, 2000)
 

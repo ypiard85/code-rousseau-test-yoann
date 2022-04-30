@@ -17,15 +17,23 @@
           <router-link :to="/card/+card.id">Voir la carte</router-link>
         </div>
         <button @click="addToMain(card)" class="btn rounded btn-warning fw-bold"  >+</button>
-      </div>
+    </div>
 </template>
 
 <script>
 
     export default{
         props:{
-            card: Object
+            card: Object,
         },
+
+        data(){
+          return{
+            in_array: false
+          }
+        },
+
+
 
         computed:{
           shourtDescription(){
@@ -33,11 +41,10 @@
           }
         },
 
-        methods:{
+          methods:{
           addToMain(card){
             this.$store.dispatch('add_to_card', card )
-            console.log(this.$store.state.jeux)
           }
-        }
+      }
     }
 </script>
