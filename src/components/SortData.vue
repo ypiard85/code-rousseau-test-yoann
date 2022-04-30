@@ -1,15 +1,26 @@
 <template>
-    <div class="mb-5">
-        <button class="btn btn-primary" @click="filterByName">Par nom</button>
-        <button class="btn btn-success" @click="filterByColor" >Par couleur</button>
-        <button class="btn btn-danger" @click="filterByType">Par type</button>
+    <div class="mb-5 d-flex justify-content-center">
+        <button class="btn btn-primary" @click="filterByName">
+            Par nom
+           <span class="ms-2 fw-bold" v-if="!filterName">A-Z</span>
+           <span class="ms-2 fw-bold" v-else>Z-A</span>
+        </button>
+        <button class="btn btn-success" @click="filterByColor" >
+            Par couleur
+            <i class="bi bi-caret-down-fill ms-2" v-if="filterColor"></i>
+            <i class="bi bi-caret-up-fill ms-2" v-else></i>
+        </button>
+        <button class="btn btn-danger" @click="filterByType">
+            Par type
+            <i class="bi bi-caret-down-fill ms-2" v-if="filterType"></i>
+            <i class="bi bi-caret-up-fill ms-2" v-else></i>
+        </button>
     </div>
 </template>
 
 
 
 <script>
-
     export default{
         props:{
             cards: Array
@@ -17,7 +28,7 @@
 
        data(){
             return{
-                filter: false,
+                filterName: false,
                 filterColor: false,
                 filterType: false
             }
@@ -25,8 +36,8 @@
 
        methods:{
             filterByName(){
-                this.filter = !this.filter
-                if(this.filter){
+                this.filterName = !this.filterName
+                if(this.filterName){
                     this.cards.sort( function(a, b){
                     if(a.name > b.name ){
                             return - 1
@@ -78,6 +89,10 @@
        }
 
     }
-
-
 </script>
+
+<style scoped>
+    button:not(:last-child){
+        margin-right: 20px!important;
+    }
+</style>

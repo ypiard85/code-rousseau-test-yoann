@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex justify-content-center flex-wrap align-items-center mt-5">
+    <div class="d-flex justify-content-center flex-wrap align-items-center">
         <img :src="card.image_uris.normal" width="300" class="mb-3 me-3" alt="">
         <div class="card col-md-4 col-10 bg-info" stylee="max-width: 100%">
             <div class="card-body">

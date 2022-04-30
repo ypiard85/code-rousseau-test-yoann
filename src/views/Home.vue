@@ -1,7 +1,5 @@
 <template>
-  <div class="mt-5">
     <CollectionList :collections="collections" />
-  </div>
 </template>
 
 <script>

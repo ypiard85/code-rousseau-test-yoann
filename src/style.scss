@@ -1,0 +1,36 @@
+html.dark{
+   body{
+       background-color: rgba(59, 59, 59, 0.311);
+       nav{
+           background-color: rgb(0, 0, 0);
+       }
+
+       .navbar-light .navbar-toggler{
+            background-color: white;
+        }
+
+       *{
+           color: white!important;
+           fill: white!important;
+       }
+
+       .card *{
+           color: black!important;
+       }
+
+       form *:not(button){
+           color: black!important;
+       }
+
+       .accordion-button{
+        color: black!important;
+       }
+   }
+}
+
+html.light{
+    background-color: rgb(255, 255, 255);
+       nav{
+           background-color: rgb(255, 255, 255);
+       }
+}

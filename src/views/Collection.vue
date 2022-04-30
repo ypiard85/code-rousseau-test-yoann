@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container">
       <h1 class="mb-5">Collection : {{ param }} </h1>
    <input type="text" v-model="query" class="form-control" placeholder="Recherchez un film"  />
     <SortData :cards="cards" class="mt-5" />

@@ -61,6 +61,9 @@ export default new Vuex.Store({
     deleteCarte({state,commit}, card){
       if(state.jeu.name){
         commit('DELETE_CARTE_IN_MAIN', card)
+        if(state.jeu.cards.length == 0){
+          commit('DELETE_JEU')
+        }
       }else{
         commit('DELETE_CARTE', card)
       }

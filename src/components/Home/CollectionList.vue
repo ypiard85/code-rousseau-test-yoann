@@ -9,7 +9,7 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody v-if="collections.length > 0">
+        <tbody>
             <tr v-for="collection in this.collections" :key="collection.id">
               <th scope="row"><img width="25" :src="collection.icon_svg_uri" alt=""></th>
               <td><span class="fw-bold">{{ collection.name }}</span><span class="text-secondary ms-2">{{ collection.code }}</span> </td>
@@ -17,8 +17,8 @@
               <td><router-link :to="'/collection/' + collection.code " class="btn btn-sm btn-primary"> Voir la col</router-link></td>
             </tr>
         </tbody>
-      <Loading v-else />
-</table>
+      </table>
+      <Loading v-if="collections.length < 1" class="mt-5" />
 </div>
 </template>
 
